@@ -4,7 +4,8 @@
   "version": "0.0.1",
   "description": "Fragments UI testing Web App",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npx parcel src/index.html"
   },
   "repository": {
     "type": "git",
@@ -13,7 +14,12 @@
   "author": "Eddie Ng",
   "license": "UNLICENSED",
   "devDependencies": {
-    "parcel": "^2.8.3"
+    "@parcel/resolver-glob": "^2.8.3",
+    "buffer": "^5.7.1",
+    "parcel": "^2.8.3",
+    "process": "^0.11.10",
+    "punycode": "^1.4.1",
+    "querystring-es3": "^0.2.1"
   },
   "dependencies": {
     "aws-amplify": "^5.0.11"
