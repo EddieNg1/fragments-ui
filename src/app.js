@@ -6,7 +6,8 @@ async function init() {
   const userSection = document.querySelector('#user');
   const loginBtn = document.querySelector('#login');
   const logoutBtn = document.querySelector('#logout');
-
+  const fragmentSection = document.querySelector('#fragment');
+  const addFragmentBtn = document.querySelector('#add-fragment');
   // Wire up event handlers to deal with login and logout.
   loginBtn.onclick = () => {
     // Sign-in via the Amazon Cognito Hosted UI (requires redirects), see:
@@ -32,7 +33,7 @@ async function init() {
 
   // Update the UI to welcome the user
   userSection.hidden = false;
-
+  fragmentSection.hidden = false;
   // Show the user's username
   userSection.querySelector('.username').innerText = user.username;
 
@@ -41,6 +42,10 @@ async function init() {
 
   // Do an authenticated request to the fragments API server and log the result
   getUserFragments(user);
+
+  addFragmentBtn.onclick = () => {
+    postUserFragment(user);
+  };
 }
 
 // Wait for the DOM to be ready, then start the app
