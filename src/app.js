@@ -8,6 +8,8 @@ async function init() {
   const logoutBtn = document.querySelector('#logout');
   const fragmentSection = document.querySelector('#fragment');
   const addFragmentBtn = document.querySelector('#add-fragment');
+  const content = document.querySelector("#content");
+  const contentType = document.querySelector("#contentType");
   // Wire up event handlers to deal with login and logout.
   loginBtn.onclick = () => {
     // Sign-in via the Amazon Cognito Hosted UI (requires redirects), see:
@@ -44,7 +46,7 @@ async function init() {
   getUserFragments(user);
 
   addFragmentBtn.onclick = () => {
-    postUserFragment(user);
+    postUserFragment(user, contentType.options[contentType.selectedIndex].value, content.value);
   };
 }
 

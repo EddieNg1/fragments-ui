@@ -15,6 +15,15 @@
       <h2>Hello <span class="username"></span>!</h2>
     </section>
     <section hidden id="fragment">
+      <label for="contentType">Select the content type:</label>
+      <select name="contentType" id="contentType">
+        <option value="text/plain">Text/Plain</option>
+        <option value="text/markdown">Text/Markdown</option>
+        <option value="text/html">Text/HTML</option>
+        <option value="application/json">application/JSON</option>
+      </select>
+      <label for="content">Content:</label>
+      <input type="text" id="content" name="content">
       <button id="add-fragment">Add Fragment</button>
     </section>
   </body>

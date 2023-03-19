@@ -25,17 +25,22 @@ export async function getUserFragments(user) {
   }
 }
 
-export async function postUserFragment(user) {
+export async function postUserFragment(user, type, content) {
   try {
-    await fetch(`${apiUrl}/v1/fragments`, {
+    const res = await fetch(`${apiUrl}/v1/fragments`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${user.idToken}`,
-        "Content-Type": "text/plain",
+        "Content-Type": `${type}`
       },
-      body: "fragment",
+      body: `${content}`,
     });
+    if (!res.ok) {
+      throw new Error(`${res.status} ${res.statusText}`);
+    }
+    const data = await res.json();
+    console.log('Posted user fragments data', { data });
   } catch (err) {
-    console.error("Unable to call POST /v1/fragment");
+    console.error("Unable to call POST /v1/fragment", { err });
   }
 }
