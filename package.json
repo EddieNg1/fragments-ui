@@ -5,7 +5,8 @@
   "description": "Fragments UI testing Web App",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npx parcel src/index.html"
+    "start": "npx parcel src/index.html",
+    "build": "npx parcel build src/index.html"
   },
   "repository": {
     "type": "git",
