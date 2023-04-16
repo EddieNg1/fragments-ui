@@ -46,10 +46,10 @@ export async function postUserFragment(user, type, content) {
   }
 }
 
-export async function getFragment(user, id) {
+export async function getFragment(user, id, ext='') {
   console.log(`Getting fragment by ID: ${id}`);
   try {
-    const res = await fetch(`${apiUrl}/v1/fragments/${id}`, {
+    const res = await fetch(`${apiUrl}/v1/fragments/${id}${ext}`, {
       headers: {
         Authorization: `Bearer ${user.idToken}`,
       },
