@@ -21,15 +21,36 @@
         <option value="text/markdown">Text/Markdown</option>
         <option value="text/html">Text/HTML</option>
         <option value="application/json">application/JSON</option>
+        <option value="image/png">image/png</option>
+        <option value="image/jpeg">image/jpeg</option>
+        <option value="image/webp">image/webp</option>
+        <option value="image/gif">image/gif</option>
       </select>
       <label for="content">Content:</label>
       <input type="text" id="content" name="content">
+      <label for="image" id="image" name="image">Image Upload</label>
+      <input type="file" id="image" name="image">
       <br>
       <br>
       <button id="add-fragment">Add Fragment</button>
       <br>
       <br>
       <button id="get">Get Fragments</button>
+      <br>
+      <br>
+      <label for="getId">Enter ID to Get Fragment:</label>
+      <input type="text" id="getId" name="getId" />
+      <button id="getById">Get by ID</button>
+      <button id="getByIdInfo">Get by ID with Info</button>
+      <br>
+      <br>
+      <label for="deleteId">Enter ID of Fragment to be Deleted:</label>
+      <input type="text" id="deleteId" name="deleteId" />
+      <br>
+      <br>
+      <button id="delete">Delete</button> <br />
+      <br>
+      <br>
       <p id="fragments" name="fragments"><br></p>
     </section>
   </body>

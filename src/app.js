@@ -11,6 +11,12 @@ async function init() {
   const content = document.querySelector("#content");
   const contentType = document.querySelector("#contentType");
   const getButton = document.querySelector("#get");
+  const image = document.querySelector("#image")
+  const getId = document.querySelector("#getId");
+  const getById = document.querySelector("#getById");
+  const getByIdInfo = document.querySelector("#getByIdInfo");
+  const deleteId = document.querySelector("#deleteId");
+  const deleteButton = document.querySelector("#delete");
   // Wire up event handlers to deal with login and logout.
   loginBtn.onclick = () => {
     // Sign-in via the Amazon Cognito Hosted UI (requires redirects), see:
@@ -54,8 +60,35 @@ async function init() {
   };
 
   addFragmentBtn.onclick = () => {
-    postUserFragment(user, contentType.options[contentType.selectedIndex].value, content.value);
+    if (
+      contentType.options[contentType.selectedIndex].value == "text/plain" ||
+      contentType.options[contentType.selectedIndex].value == "text/markdown" ||
+      contentType.options[contentType.selectedIndex].value == "text/html" ||
+      contentType.options[contentType.selectedIndex].value == "application/json"
+    ){
+      postUserFragment(user, contentType.options[contentType.selectedIndex].value, content.value);
+    } else{
+      postUserFragment(user, contentType.options[contentType.selectedIndex].value, image);
+    }
   };
+
+  getById.onclick = async () => {
+    var res = await getFragment(user, getId.value);
+    if(res[0].includes("application/json")){
+      infoData.innerHTML = JSON.stringify(res[1]);
+    }
+    infoData.innerHTML = res;
+  };
+
+  getByIdInfo.onclick = async () => {
+    var res = await getFragmentInfo(user, getId.value);
+    infoData.innerHTML = JSON.stringify(res);
+  };
+
+  deleteButton.onclick = () => {
+    deleteFragment(user, deleteId.value);
+  };
+
 }
 
 // Wait for the DOM to be ready, then start the app

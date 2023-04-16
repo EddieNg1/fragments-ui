@@ -45,3 +45,72 @@ export async function postUserFragment(user, type, content) {
     console.error("Unable to call POST /v1/fragment", { err });
   }
 }
+
+export async function getFragment(user, id) {
+  console.log(`Getting fragment by ID: ${id}`);
+  try {
+    const res = await fetch(`${apiUrl}/v1/fragments/${id}`, {
+      headers: {
+        Authorization: `Bearer ${user.idToken}`,
+      },
+    });
+    if (!res.ok) {
+      throw new Error(`${res.status} ${res.statusText}`);
+    }
+    const headers = res.headers.get("content-type");
+    var data;
+    if (headers.includes("text/plain")) {
+      data = await res.text();
+    } else if (headers.includes("application/json")) {
+      data = await res.text();
+    } else if (headers.includes("text/html")) {
+      data = await res.text();
+    } else if (headers.includes("image/")){
+      data = await res.blob();
+    }else{
+      data = await res.text();
+    }
+      console.log("Got user fragments by id", { data });
+      return[headers, data];
+  } catch (err) {
+    console.error("Unable to call GET /v1/fragment", { err });
+  }
+}
+
+export async function getFragmentInfo(user, id) {
+  try {
+    const res = await fetch(`${apiUrl}/v1/fragments/${id}/info`, {
+      headers: {
+        Authorization: `Bearer ${user.idToken}`,
+      },
+    });
+    if (!res.ok) {
+      throw new Error(`${res.status} ${res.statusText}`);
+    }
+    const data = await res.json();
+    console.log("GET user fragments data", { data });
+    return data;
+  } catch (err) {
+    console.error("Unable to call GET /v1/fragment", { err });
+  }
+}
+
+export async function deleteFragment(user, id) {
+  console.log(`Deleting fragment by Id: ${id}`);
+  try {
+    const res = await fetch(`${apiUrl}/v1/fragments/${id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${user.idToken}`,
+      },
+    });
+    if (!res.ok) {
+      throw new Error(`${res.status} ${res.statusText}`);
+    }
+    const dat = await res.json();
+    console.log("Delete fragments data", { dat });
+    return dat;
+  } catch (err) {
+    console.error("Unable to call DELETE /v1/fragment", { err });
+  }
+}
